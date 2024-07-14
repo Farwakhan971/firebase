@@ -4,8 +4,11 @@ import 'package:firebase_impl/auth/signup_screen.dart';
 import 'package:firebase_impl/post_Screen.dart';
 import 'package:firebase_impl/utils/round_button.dart';
 import 'package:firebase_impl/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'forgot_password.dart';
 class Login_screen extends StatefulWidget {
   const Login_screen({super.key});
 
@@ -66,6 +69,7 @@ class _Login_screenState extends State<Login_screen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+
               Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: TextFormField(
@@ -87,11 +91,9 @@ class _Login_screenState extends State<Login_screen> {
               Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: TextFormField(
-
                   controller: passwordcontroller,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.lock),
-
                       hintText: 'Password'
                   ),
                   validator: (value){
@@ -103,9 +105,12 @@ class _Login_screenState extends State<Login_screen> {
                   },
                 ),
               ),
+
+
               SizedBox(
                 height: 30,
               ),
+
               Center(
                 child: Roundbutton(
                   loading: loading,
@@ -114,6 +119,12 @@ class _Login_screenState extends State<Login_screen> {
                 if(_formkey.currentState!.validate()){
                      Login();
                 }}),),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: TextButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Forgot_Password()));
+                },child: Text('Forgot Password')),
+              ),
               TextButton(onPressed: (){
                Navigator.push(context, MaterialPageRoute(builder: (context) => Signup_screen()));
               }, child: const Row(
@@ -124,6 +135,9 @@ class _Login_screenState extends State<Login_screen> {
                     ],
                   ),
               ),
+
+
+
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: InkWell(
