@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_impl/post_Screen.dart';
 import 'package:flutter/material.dart';
 
-import '../round_button.dart';
+import '../utils/round_button.dart';
 import '../utils/utils.dart';
 
 class VerifyCodeScreen extends StatefulWidget {

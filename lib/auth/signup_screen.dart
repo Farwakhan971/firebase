@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_impl/auth/Login_screen.dart';
-import 'package:firebase_impl/round_button.dart';
+import 'package:firebase_impl/utils/round_button.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/utils.dart';

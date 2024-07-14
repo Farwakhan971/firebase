@@ -1,22 +1,26 @@
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_impl/utils/round_button.dart';
 import 'package:firebase_impl/utils/utils.dart';
 import 'package:flutter/material.dart';
-class AddPostsScreen extends StatefulWidget {
-  const AddPostsScreen({super.key});
+
+class Addfirestorescreen extends StatefulWidget {
+  const Addfirestorescreen({super.key});
+
   @override
-  State<AddPostsScreen> createState() => _AddPostsScreenState();
+  State<Addfirestorescreen> createState() => _AddfirestorescreenState();
 }
-class _AddPostsScreenState extends State<AddPostsScreen> {
-  final databaseRef = FirebaseDatabase.instance.ref('Posts');
+
+class _AddfirestorescreenState extends State<Addfirestorescreen> {
+  final firestore = FirebaseFirestore.instance.collection('Posts');
   final postController = TextEditingController();
   bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        title: Text('Add Post', style: TextStyle(color: Colors.white)),
+        title: Text('Add Firestore data', style: TextStyle(color: Colors.white)),
       ),
       body: Column(
         children: [
@@ -40,16 +44,16 @@ class _AddPostsScreenState extends State<AddPostsScreen> {
               setState(() {
                 loading = true;
               });
-              String id = DateTime.now().millisecondsSinceEpoch.toString();
-              databaseRef.child(id).set({
+              String id = DateTime.now().millisecondsSinceEpoch.toString(); // Generate a new document ID
+              firestore.doc(id).set({
                 'title': postController.text.toString(),
-                'id':id
+                'id': id
               }).then((value) {
                 setState(() {
                   loading = false;
                 });
-                Utils().toastMessage('Post Added');
-              }).onError((error, stackTrace) {
+                Utils().toastMessage('Stored in Firestore');
+              }).catchError((error) {
                 setState(() {
                   loading = false;
                 });
